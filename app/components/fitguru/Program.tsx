@@ -1,3 +1,5 @@
+import { sengdaraPhoto } from "./sengdara-photos";
+
 export default function Program() {
   return (
     <section id="program" className="section program">
@@ -5,14 +7,14 @@ export default function Program() {
         <div className="program__photos">
           <img
             className="program__photo-tall"
-            src="https://picsum.photos/seed/fitguru-coach1/350/615"
-            alt="Coach portrait"
+            src={sengdaraPhoto("elevatedTrack", 400, 615)}
+            alt="Sengdara Fitness elevated running track"
             loading="lazy"
           />
           <img
             className="program__photo-square"
-            src="https://picsum.photos/seed/fitguru-coach2/615/615"
-            alt="Coach in action"
+            src={sengdaraPhoto("cardioFloor", 615, 615)}
+            alt="Sengdara Fitness cardio floor"
             loading="lazy"
           />
         </div>

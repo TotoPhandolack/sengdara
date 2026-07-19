@@ -1,3 +1,5 @@
+import { sengdaraPhoto } from "./sengdara-photos";
+
 const FEATURES = [
   {
     title: "Lorem Ipsum amid",
@@ -64,11 +66,23 @@ export default function WhyChooseUs() {
 
           <div className="why__gallery">
             <div className="why__gallery-tall">
-              <img src="https://picsum.photos/seed/fitguru-gym1/500/820" alt="Gym interior" loading="lazy" />
+              <img
+                src={sengdaraPhoto("interiorTwoLevel", 570, 820)}
+                alt="Sengdara Fitness two-level equipment floor"
+                loading="lazy"
+              />
             </div>
             <div className="why__gallery-stack">
-              <img src="https://picsum.photos/seed/fitguru-gym2/460/380" alt="Gym equipment" loading="lazy" />
-              <img src="https://picsum.photos/seed/fitguru-gym3/460/380" alt="Weights close up" loading="lazy" />
+              <img
+                src={sengdaraPhoto("boxingArea", 530, 384)}
+                alt="Sengdara Fitness boxing and functional training area"
+                loading="lazy"
+              />
+              <img
+                src={sengdaraPhoto("memberCableMachine", 530, 384)}
+                alt="Sengdara Fitness member training on a cable machine"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>

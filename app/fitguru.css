@@ -120,8 +120,8 @@
 .fitguru-site .hero__bg {
   position: absolute;
   inset: 0;
-  background: url("https://picsum.photos/seed/fitguru-hero/1600/1000") center 20% / cover no-repeat;
-  filter: grayscale(0.5) brightness(0.5) contrast(1.1);
+  background: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn2J8_-VM19zHbyYSBaWzPhSkCu9Ve_luWnN_qrQZ-l74dnUIeLpwp46iyOOaNdZbhfXJ2xonsfu4k9OnnPrvJitgqhxbErvnThq8orBNnuvnAsTvRjOxE6roP7JsidtMuatAKPCQ=w1600-h1000-k-no") center / cover no-repeat;
+  filter: brightness(0.65) contrast(1.05);
   z-index: 0;
 }
 
@@ -421,8 +421,8 @@
 .fitguru-site .footer__cta { position: relative; height: 425px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .fitguru-site .footer__cta-bg {
   position: absolute; inset: 0;
-  background: url("https://picsum.photos/seed/fitguru-footer/1600/850") center / cover no-repeat;
-  filter: grayscale(0.4) brightness(0.55);
+  background: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmnHnjhS_UZy6SBu_ob7w6fILDD8OTEgC7kcdsvEW_rpTRrzUd4JT5K1QIvLGZ6LVV5D5vrf7JTlWDKTFwxrANy-FsVR7RBvzUeJ1mRVVtsj1sr-qNLBfqx3nqpcsjnMknsKxz-=w1600-h850-k-no") center / cover no-repeat;
+  filter: brightness(0.5);
 }
 .fitguru-site .footer__cta-bg::after { content: ""; position: absolute; inset: 0; background: rgba(17,17,17,0.55); }
 .fitguru-site .footer__cta-content { position: relative; z-index: 1; text-align: center; color: var(--white); display: flex; flex-direction: column; gap: 30px; }

@@ -1,3 +1,8 @@
+import { sengdaraPhoto } from "./sengdara-photos";
+
+// No dedicated trainer-portrait photos were available on the Google Business
+// Profile, so this section reuses the confirmed real facility shots instead
+// of stock placeholders. Swap in real trainer photos here once you have them.
 export default function TrainersGallery() {
   return (
     <section id="trainers-gallery" className="section trainers">
@@ -9,14 +14,14 @@ export default function TrainersGallery() {
 
         <div className="trainers__grid">
           <div className="trainers__row">
-            <img className="w-narrow" src="https://picsum.photos/seed/fitguru-trainer1/440/576" alt="Trainer" loading="lazy" />
-            <img className="w-wide" src="https://picsum.photos/seed/fitguru-trainer2/1150/576" alt="Trainer" loading="lazy" />
-            <img className="w-narrow" src="https://picsum.photos/seed/fitguru-trainer3/440/576" alt="Trainer" loading="lazy" />
+            <img className="w-narrow" src={sengdaraPhoto("memberCableMachine", 440, 576)} alt="Sengdara Fitness member training" loading="lazy" />
+            <img className="w-wide" src={sengdaraPhoto("interiorTwoLevel", 1150, 576)} alt="Sengdara Fitness equipment floor" loading="lazy" />
+            <img className="w-narrow" src={sengdaraPhoto("boxingArea", 440, 576)} alt="Sengdara Fitness boxing area" loading="lazy" />
           </div>
           <div className="trainers__row">
-            <img className="w-wide" src="https://picsum.photos/seed/fitguru-trainer4/794/576" alt="Trainer" loading="lazy" />
-            <img className="w-narrow" src="https://picsum.photos/seed/fitguru-trainer5/440/576" alt="Trainer" loading="lazy" />
-            <img className="w-wide" src="https://picsum.photos/seed/fitguru-trainer6/794/576" alt="Trainer" loading="lazy" />
+            <img className="w-wide" src={sengdaraPhoto("elevatedTrack", 794, 576)} alt="Sengdara Fitness elevated running track" loading="lazy" />
+            <img className="w-narrow" src={sengdaraPhoto("cardioFloor", 440, 576)} alt="Sengdara Fitness cardio floor" loading="lazy" />
+            <img className="w-wide" src={sengdaraPhoto("exteriorNight", 794, 576)} alt="Sengdara Fitness building exterior" loading="lazy" />
           </div>
         </div>
       </div>
