@@ -8,8 +8,8 @@ export default function TrainersGallery() {
     <section id="trainers-gallery" className="section trainers">
       <div className="container trainers__inner">
         <div className="section-heading">
-          <h2>Meet Our Trainers</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+          <h2>Take a Look Inside</h2>
+          <p>Two floors of premium Precor equipment, a boxing area, an elevated running track, and more</p>
         </div>
 
         <div className="trainers__grid">

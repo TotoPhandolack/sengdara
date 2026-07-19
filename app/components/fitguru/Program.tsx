@@ -24,9 +24,10 @@ export default function Program() {
             <h2>Coaches</h2>
           </div>
           <p className="body-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et. Lorem ipsum dolor sit ...
+            &ldquo;The trainers are incredibly kind — always around to spot you and teach you how to use
+            the equipment properly,&rdquo; says one member. Whether you&apos;re brand new to the gym or
+            training for a specific goal, our team walks the floor with you instead of leaving you to
+            figure it out alone.
           </p>
           <a href="#trainers-gallery" className="btn btn--dark">
             Explore&nbsp;&nbsp;More

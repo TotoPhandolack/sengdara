@@ -1,8 +1,9 @@
+// Sourced from the Sengdara Fitness Km6 Google Business Profile — real, verified figures only.
 const STATS = [
-  { label: "Years of Service", value: "5+" },
-  { label: "Certified Trainers", value: "10+" },
-  { label: "Happy Members", value: "786+" },
-  { label: "Customer Satisfaction", value: "95%", white: true },
+  { label: "Google Rating", value: "4.7★" },
+  { label: "Member Reviews", value: "62+" },
+  { label: "Gym Equipment", value: "Precor" },
+  { label: "Open Until", value: "10 PM", white: true },
 ];
 
 export default function Stats() {

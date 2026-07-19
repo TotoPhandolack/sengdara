@@ -20,8 +20,9 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "FitGuru | Elevate Your Workout",
-  description: "Gym landing page — elevate your workout with FitGuru.",
+  title: "Sengdara Fitness Km6 | Vientiane's 4.7★ Gym",
+  description:
+    "Sengdara Fitness Km6 in Vientiane, Laos — premium Precor equipment, a full swimming pool, sauna, and boxing area. Rated 4.7 out of 5 by 62 members on Google.",
 };
 
 export default function RootLayout({

@@ -373,11 +373,21 @@
 .fitguru-site .reviews__content { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 
 .fitguru-site .reviews__avatars { position: relative; width: 435px; height: 335px; flex-shrink: 0; max-width: 100%; }
-.fitguru-site .reviews__avatars img { position: absolute; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-xl); }
-.fitguru-site .reviews__avatars img:nth-child(1) { top: 18px; left: 0; width: 160px; height: 160px; }
-.fitguru-site .reviews__avatars img:nth-child(2) { top: 183px; left: 285px; width: 150px; height: 150px; }
-.fitguru-site .reviews__avatars img:nth-child(3) { top: 173px; left: 91px; width: 180px; height: 180px; }
-.fitguru-site .reviews__avatars img:nth-child(4) { top: 53px; left: 240px; width: 120px; height: 120px; }
+.fitguru-site .avatar-badge {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-family: var(--font);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.fitguru-site .avatar-badge--0 { top: 18px; left: 0; width: 160px; height: 160px; font-size: 48px; background: linear-gradient(135deg, #424242, #212121); }
+.fitguru-site .avatar-badge--1 { top: 183px; left: 285px; width: 150px; height: 150px; font-size: 44px; background: linear-gradient(135deg, #757575, #424242); }
+.fitguru-site .avatar-badge--2 { top: 173px; left: 91px; width: 180px; height: 180px; font-size: 52px; background: linear-gradient(135deg, #212121, #0a142f); }
 
 .fitguru-site .reviews__carousel-wrap { flex: 1 1 500px; min-width: 0; }
 .fitguru-site .reviews__track { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 4px; scrollbar-width: none; }
@@ -399,6 +409,7 @@
 .fitguru-site .review-card__stars { color: #212121; font-size: 16px; letter-spacing: 2px; margin-bottom: 12px; }
 .fitguru-site .review-card__stars .dim { color: var(--neutral-300); }
 .fitguru-site .review-card__quote { font-size: 14px; color: var(--neutral-700); opacity: 0.8; }
+.fitguru-site .review-card__time { font-size: 12px; color: var(--neutral-500); margin-top: -8px; }
 
 .fitguru-site .reviews__nav { display: flex; gap: 10px; margin-top: 16px; padding-left: 4px; }
 .fitguru-site .reviews__nav button {

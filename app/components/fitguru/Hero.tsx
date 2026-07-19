@@ -10,12 +10,13 @@ export default function Hero() {
 
       <div className="container hero__content">
         <h1 className="hero__title">
-          Elevate&nbsp;&nbsp;your
+          No&nbsp;pain,
           <br />
-          workout
+          no&nbsp;gain
         </h1>
         <p className="hero__subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          Premium Precor equipment, a full swimming pool and sauna, and trainers who actually spot
+          you. Rated 4.7 by 62 members in Vientiane.
         </p>
         <a href="#pricing" className="btn btn--white">
           Get Started

@@ -1,27 +1,18 @@
 const LINK_COLUMNS = [
   { title: "Quick Links", links: [
     { label: "Home", href: "#hero" },
-    { label: "About Us", href: "#why-choose-us" },
-    { label: "Services", href: "#trainers-gallery" },
-    { label: "Contact", href: "#footer" },
+    { label: "Why Choose Us", href: "#why-choose-us" },
+    { label: "Facility", href: "#trainers-gallery" },
+    { label: "Pricing", href: "#pricing" },
   ]},
-  { title: "Lorem Ipsum", links: [
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
+  { title: "Contact", links: [
+    { label: "020 93 460 645", href: "tel:+8562093460645" },
+    { label: "Ban Nongnieng 13, South Rd", href: "https://maps.app.goo.gl/TPBH4abruK9srHEK6" },
+    { label: "Vientiane 01160, Laos", href: "https://maps.app.goo.gl/TPBH4abruK9srHEK6" },
   ]},
-  { title: "Lorem Ipsum", links: [
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
-  ]},
-  { title: "Lorem Ipsum", links: [
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
-    { label: "Lorem", href: "#" },
+  { title: "Hours", links: [
+    { label: "Open daily", href: "#footer" },
+    { label: "Until 10:00 PM", href: "#footer" },
   ]},
 ];
 
@@ -32,7 +23,9 @@ export default function Footer() {
         <div className="footer__cta-bg" aria-hidden="true" />
         <div className="footer__cta-content">
           <p>Call Us Now</p>
-          <p className="footer__phone">+91 82000-60000</p>
+          <a className="footer__phone" href="tel:+8562093460645">
+            020 93 460 645
+          </a>
         </div>
       </div>
 
@@ -42,10 +35,12 @@ export default function Footer() {
             <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
               <path d="M6 24V12M11 27V9M16 30V6M20 6V30M25 9V27M30 12V24" stroke="#111111" strokeWidth="3" strokeLinecap="round" />
             </svg>
-            <span>FitGuru</span>
+            <span>Sengdara Fitness Km6</span>
           </a>
-          <p className="footer__tagline">Recusandae quos nesciunt veniam eum quia</p>
-          <p className="footer__email">totophandolack915@gmail.com</p>
+          <p className="footer__tagline">
+            Vientiane&apos;s 4.7-star rated gym — premium Precor equipment, a full swimming pool,
+            sauna, and trainers who spot you.
+          </p>
           <div className="footer__socials">
             <a href="#" aria-label="Facebook">
               <svg width="9" height="18" viewBox="0 0 9 19" fill="none">
@@ -82,7 +77,7 @@ export default function Footer() {
         ))}
       </div>
 
-      <p className="footer__bottom">&copy; 2026 FitGuru. All rights reserved.</p>
+      <p className="footer__bottom">&copy; 2026 Sengdara Fitness Km6. All rights reserved.</p>
     </footer>
   );
 }
