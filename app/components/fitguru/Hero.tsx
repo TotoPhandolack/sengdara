@@ -1,8 +1,25 @@
+import fs from "node:fs";
+import path from "node:path";
 import NavBar from "./NavBar";
+import HeroBackground from "./HeroBackground";
+
+const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif"]);
+
+function getHeroImages() {
+  const dir = path.join(process.cwd(), "public", "images", "hero");
+  return fs
+    .readdirSync(dir)
+    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
+    .sort()
+    .map((file) => `/images/hero/${file}`);
+}
 
 export default function Hero() {
+  const heroImages = getHeroImages();
+
   return (
     <section id="hero" className="section hero">
+      <HeroBackground images={heroImages} />
       <div className="hero__bg" aria-hidden="true" />
 
       <NavBar />

@@ -41,11 +41,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // suppressHydrationWarning: tolerate attributes/nodes injected into
+    // <html>/<body> by browser extensions (Grammarly, password managers, etc.)
+    // so they don't trigger dev-mode hydration warnings. Only affects these two
+    // tags one level deep — real mismatches in the app tree still surface.
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${archivo.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

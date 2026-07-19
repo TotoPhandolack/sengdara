@@ -250,6 +250,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-self: end;
   gap: 5px;
   background: none;
   border: none;
@@ -285,19 +286,29 @@
   padding: 160px 0 80px;
 }
 
-.fitguru-site .hero__bg {
+.fitguru-site .hero__slideshow {
   position: absolute;
   inset: 0;
-  background: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn2J8_-VM19zHbyYSBaWzPhSkCu9Ve_luWnN_qrQZ-l74dnUIeLpwp46iyOOaNdZbhfXJ2xonsfu4k9OnnPrvJitgqhxbErvnThq8orBNnuvnAsTvRjOxE6roP7JsidtMuatAKPCQ=w1600-h1000-k-no") center / cover no-repeat;
-  filter: brightness(0.65) contrast(1.05);
   z-index: 0;
+  overflow: hidden;
+  filter: brightness(0.65) contrast(1.05);
   transform: scale(1.05);
 }
 
-.fitguru-site .hero__bg::after {
-  content: "";
+.fitguru-site .hero__slide {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.fitguru-site .hero__slide.is-active {
+  opacity: 1;
+}
+
+.fitguru-site .hero__bg {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.45) 100%);
 }
 
@@ -728,7 +739,7 @@
 
 @media (max-width: 900px) {
   .fitguru-site .nav-toggle { display: flex; }
-  .fitguru-site .hero__nav { grid-template-columns: auto auto; left: 16px; right: 16px; padding: 10px 10px 10px 20px; }
+  .fitguru-site .hero__nav { grid-template-columns: auto 1fr; left: 16px; right: 16px; padding: 10px 10px 10px 20px; }
   .fitguru-site .hero__join { display: none; }
   .fitguru-site .hero__links {
     position: absolute; top: calc(100% + 12px); left: 0; right: 0;
@@ -745,6 +756,9 @@
   .fitguru-site .hero__links.open { display: flex; }
   .fitguru-site .hero { padding-top: 130px; }
   .fitguru-site .hero__title { font-size: 60px; }
+  /* Narrower viewports need a wider render so the fixed-unit wave path
+     shows fewer, larger humps instead of cramped scallops. */
+  .fitguru-site .hero__wave svg { width: 400%; }
   .fitguru-site .section-heading { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
   .fitguru-site .section-heading__desc { text-align: left; max-width: none; }
   .fitguru-site .section-heading h2,

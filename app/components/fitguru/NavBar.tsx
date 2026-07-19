@@ -36,7 +36,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <div className="container hero__nav">
+    <div className="hero__nav">
       <a className="logo" href="#hero">
         <Image
           src="/images/logo.png"
