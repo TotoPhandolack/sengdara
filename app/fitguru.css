@@ -509,22 +509,39 @@
 /* =========================================================
    7. REVIEWS — static grid, avatar in-card
 ========================================================= */
-.fitguru-site .reviews { padding: 120px 0; background: var(--canvas); }
+.fitguru-site .reviews { padding: 120px 0; background: var(--canvas); overflow: hidden; }
 
-.fitguru-site .reviews__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+/* Carousel: two rows of cards flowing horizontally, 4 columns visible per page.
+   Each card snaps; prev/next scroll one page (container width). */
+.fitguru-site .reviews__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-columns: calc((100% - 3 * 24px) / 4);
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.fitguru-site .reviews__track::-webkit-scrollbar { display: none; }
 
 .fitguru-site .review-card {
+  scroll-snap-align: start;
+  height: 300px;
   background: var(--white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xs);
-  padding: 28px 24px;
+  padding: 26px 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .fitguru-site .review-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
 .fitguru-site .review-card__avatar {
+  flex-shrink: 0;
   width: 44px; height: 44px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -534,11 +551,38 @@
   color: var(--white);
   background: linear-gradient(135deg, #3a3a38, #121210);
 }
-.fitguru-site .review-card__stars { color: var(--neutral-1000); font-size: 15px; letter-spacing: 2px; }
-.fitguru-site .review-card__quote { font-size: 15px; color: var(--neutral-700); line-height: 1.6; }
+.fitguru-site .review-card__stars { color: var(--neutral-1000); font-size: 15px; letter-spacing: 2px; flex-shrink: 0; }
+.fitguru-site .review-card__quote {
+  font-size: 15px; color: var(--neutral-700); line-height: 1.55;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
 .fitguru-site .review-card__name { font-family: var(--font); font-size: 16px; font-weight: 700; color: var(--neutral-1000); }
 .fitguru-site .review-card__time { font-size: 13px; color: var(--neutral-500); }
 .fitguru-site .review-card__foot { margin-top: auto; display: flex; flex-direction: column; gap: 2px; }
+
+.fitguru-site .reviews__controls { display: flex; align-items: center; gap: 20px; margin-top: 32px; }
+.fitguru-site .reviews__dots { display: flex; gap: 8px; flex: 1; }
+.fitguru-site .reviews__dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--neutral-400); border: none; padding: 0; cursor: pointer;
+  transition: background 0.2s var(--ease), width 0.2s var(--ease);
+}
+.fitguru-site .reviews__dot.active { background: var(--neutral-1000); width: 24px; border-radius: 4px; }
+.fitguru-site .reviews__arrows { display: flex; gap: 10px; }
+.fitguru-site .reviews__arrows button {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--neutral-1000);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.18s var(--ease), transform 0.18s var(--ease), opacity 0.18s var(--ease);
+}
+.fitguru-site .reviews__arrows button:hover:not(:disabled) { background: var(--black); transform: translateY(-2px); }
+.fitguru-site .reviews__arrows button:disabled { opacity: 0.35; cursor: default; }
 
 /* =========================================================
    8. FOOTER — solid black, matches reference's closing surface
@@ -604,7 +648,7 @@
   -webkit-text-stroke: 1px rgba(255,255,255,0.15);
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 }
 
 .fitguru-site .footer__bottom {
@@ -657,7 +701,7 @@
   .fitguru-site .hero__links.open { display: flex; }
   .fitguru-site .hero { padding-top: 130px; }
   .fitguru-site .hero__title { font-size: 60px; }
-  .fitguru-site .section-heading { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .fitguru-site .section-heading { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
   .fitguru-site .section-heading__desc { text-align: left; max-width: none; }
   .fitguru-site .section-heading h2,
   .fitguru-site .program__text h2 { font-size: 38px; }
@@ -667,13 +711,21 @@
   .fitguru-site .trainers__row .w-narrow,
   .fitguru-site .trainers__row .w-wide { width: 100%; height: 240px; }
   .fitguru-site .trainers__row figure { height: 240px; }
-  .fitguru-site .reviews__grid { grid-template-columns: 1fr; }
+  .fitguru-site .reviews__track { grid-auto-columns: calc((100% - 24px) / 2); }
   .fitguru-site .footer__cols { padding-top: 48px; }
   .fitguru-site .footer__cta { padding: 0 16px; }
+
+  /* Gallery: stack the tall shot above a side-by-side pair, all full-width */
+  .fitguru-site .why__content { margin-top: 48px; }
+  .fitguru-site .why__gallery { flex-direction: column; width: 100%; max-width: 520px; gap: 16px; }
+  .fitguru-site .why__gallery-tall img { width: 100%; height: 300px; }
+  .fitguru-site .why__gallery-stack { flex-direction: row; gap: 16px; }
+  .fitguru-site .why__gallery-stack > div { flex: 1 1 0; min-width: 0; }
+  .fitguru-site .why__gallery-stack img { width: 100%; height: 180px; }
 }
 
 @media (max-width: 700px) {
-  .fitguru-site .reviews__grid { grid-template-columns: 1fr; }
+  .fitguru-site .reviews__track { grid-auto-columns: 86%; }
 }
 
 @media (max-width: 560px) {
@@ -681,7 +733,10 @@
   .fitguru-site .hero { padding-bottom: 60px; }
   .fitguru-site .hero__title { font-size: 46px; }
   .fitguru-site .section-heading h2 { font-size: 32px; }
-  .fitguru-site .stats__row { flex-direction: column; }
+  .fitguru-site .stats { padding-top: 48px; }
+  .fitguru-site .stats__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fitguru-site .stat { padding: 20px 18px; }
+  .fitguru-site .stat__value { font-size: 30px; }
   .fitguru-site .why { padding: 72px 0; }
   .fitguru-site .program { padding: 72px 0; }
   .fitguru-site .trainers { padding: 72px 0; }
