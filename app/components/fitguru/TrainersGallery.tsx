@@ -1,4 +1,6 @@
 import { sengdaraPhoto } from "./sengdara-photos";
+import SectionEyebrow from "./SectionEyebrow";
+import CornerArrow from "./CornerArrow";
 
 // No dedicated trainer-portrait photos were available on the Google Business
 // Profile, so this section reuses the confirmed real facility shots instead
@@ -8,20 +10,26 @@ export default function TrainersGallery() {
     <section id="trainers-gallery" className="section trainers">
       <div className="container trainers__inner">
         <div className="section-heading">
-          <h2>Take a Look Inside</h2>
-          <p>Two floors of premium Precor equipment, a boxing area, an elevated running track, and more</p>
+          <div className="section-heading__top">
+            <SectionEyebrow>Facility</SectionEyebrow>
+            <h2>Take a look inside</h2>
+          </div>
+          <p className="section-heading__desc">
+            Two floors of premium Precor equipment, a boxing area, an elevated running track, and
+            more.
+          </p>
         </div>
 
         <div className="trainers__grid">
           <div className="trainers__row">
-            <img className="w-narrow" src={sengdaraPhoto("memberCableMachine", 440, 576)} alt="Sengdara Fitness member training" loading="lazy" />
-            <img className="w-wide" src={sengdaraPhoto("interiorTwoLevel", 1150, 576)} alt="Sengdara Fitness equipment floor" loading="lazy" />
-            <img className="w-narrow" src={sengdaraPhoto("boxingArea", 440, 576)} alt="Sengdara Fitness boxing area" loading="lazy" />
+            <figure className="w-narrow"><img src={sengdaraPhoto("memberCableMachine", 440, 576)} alt="Sengdara Fitness member training" loading="lazy" /><CornerArrow /></figure>
+            <figure className="w-wide"><img src={sengdaraPhoto("interiorTwoLevel", 1150, 576)} alt="Sengdara Fitness equipment floor" loading="lazy" /><CornerArrow /></figure>
+            <figure className="w-narrow"><img src={sengdaraPhoto("boxingArea", 440, 576)} alt="Sengdara Fitness boxing area" loading="lazy" /><CornerArrow /></figure>
           </div>
           <div className="trainers__row">
-            <img className="w-wide" src={sengdaraPhoto("elevatedTrack", 794, 576)} alt="Sengdara Fitness elevated running track" loading="lazy" />
-            <img className="w-narrow" src={sengdaraPhoto("cardioFloor", 440, 576)} alt="Sengdara Fitness cardio floor" loading="lazy" />
-            <img className="w-wide" src={sengdaraPhoto("exteriorNight", 794, 576)} alt="Sengdara Fitness building exterior" loading="lazy" />
+            <figure className="w-wide"><img src={sengdaraPhoto("elevatedTrack", 794, 576)} alt="Sengdara Fitness elevated running track" loading="lazy" /><CornerArrow /></figure>
+            <figure className="w-narrow"><img src={sengdaraPhoto("cardioFloor", 440, 576)} alt="Sengdara Fitness cardio floor" loading="lazy" /><CornerArrow /></figure>
+            <figure className="w-wide"><img src={sengdaraPhoto("exteriorNight", 794, 576)} alt="Sengdara Fitness building exterior" loading="lazy" /><CornerArrow /></figure>
           </div>
         </div>
       </div>

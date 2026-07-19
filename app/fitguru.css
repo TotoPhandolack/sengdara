@@ -1,38 +1,56 @@
 /* =========================================================
-   FITGURU — GYM LANDING PAGE
-   Design tokens pulled from Figma: GYM Landing Page ✨ (Community)
+   SENGDARA FITNESS — GYM LANDING PAGE
+   Design system: rounded, black & white chrome on a soft
+   light-gray canvas, with full-color photography throughout.
+   Reference: sure-exercise-730936.framer.app
+     · Canvas: warm light gray (not pure white)
+     · Chrome (nav pill, footer, buttons, icons): black & white
+     · Photography: full natural color, never desaturated
+     · Corners: generously rounded everywhere
+     · Display type: Archivo (heavy geometric grotesk)
+     · Body type:    Inter
    All rules are scoped under .fitguru-site so they never leak
    into the rest of the Next.js app / Tailwind's own resets.
 ========================================================= */
 .fitguru-site {
   --white: #ffffff;
-  --black: #111111;
-  --neutral-100: #fafafa;
-  --neutral-200: #f5f5f5;
-  --neutral-300: #eeeeee;
-  --neutral-400: #e0e0e0;
-  --neutral-500: #bdbdbd;
-  --neutral-600: #9e9e9e;
-  --neutral-700: #757575;
-  --neutral-900: #424242;
-  --neutral-1000: #212121;
-  --dark-navy: #0a142f;
+  --black: #0a0a0a;
+  --canvas: #efefec;
+  --neutral-100: #f7f7f5;
+  --neutral-200: #eaeae7;
+  --neutral-300: #dddddb;
+  --neutral-400: #c2c2c0;
+  --neutral-500: #9a9a98;
+  --neutral-600: #737371;
+  --neutral-700: #4d4d4b;
+  --neutral-900: #232320;
+  --neutral-1000: #121210;
 
-  --shadow-xs: 0 2px 4px rgba(58, 53, 65, 0.14);
-  --shadow-xl: 0 8px 24px rgba(58, 53, 65, 0.2);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --ring: 0 0 0 3px rgba(10, 10, 10, 0.35);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.16);
 
   --space-24: 24px;
   --space-32: 32px;
   --space-64: 64px;
 
-  --font: var(--font-rubik), "Rubik", sans-serif;
+  --font: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-display: var(--font-archivo), "Archivo", var(--font), sans-serif;
   --container: 1430px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   font-family: var(--font);
   color: var(--neutral-1000);
-  background: var(--white);
-  line-height: 1.4;
-  letter-spacing: 0.2px;
+  background: var(--canvas);
+  line-height: 1.55;
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -46,13 +64,22 @@
 .fitguru-site a { text-decoration: none; color: inherit; }
 .fitguru-site ul { list-style: none; margin: 0; padding: 0; }
 
+/* Visible focus ring for keyboard users on every interactive element */
+.fitguru-site a:focus-visible,
+.fitguru-site button:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: 4px;
+}
+
 .fitguru-site h1,
 .fitguru-site h2,
 .fitguru-site h3 {
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 0;
-  color: var(--neutral-900);
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--neutral-1000);
   margin: 0;
 }
 
@@ -68,98 +95,153 @@
 
 .fitguru-site .uppercase { text-transform: uppercase; }
 
+/* Two-column section header: eyebrow+title on the left, description
+   bottom-aligned on the right — matches the reference's header pattern. */
 .fitguru-site .section-heading {
-  text-align: center;
-  max-width: 704px;
-  margin: 0 auto 60px;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  text-align: left;
+  margin: 0 0 64px;
 }
+.fitguru-site .section-heading__top { display: flex; flex-direction: column; gap: 14px; }
 .fitguru-site .section-heading h2 { font-size: 48px; }
-.fitguru-site .section-heading p { font-size: 24px; font-weight: 400; color: var(--neutral-600); }
+.fitguru-site .section-heading__desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--neutral-600);
+  line-height: 1.6;
+  max-width: 380px;
+  text-align: right;
+}
 
-.fitguru-site .eyebrow { font-size: 24px; font-weight: 400; color: var(--neutral-600); margin-bottom: 16px; }
+/* Kicker label: circled "+" icon + tracked label, matches reference eyebrows */
+.fitguru-site .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--neutral-700);
+  margin-bottom: 14px;
+}
+.fitguru-site .section-heading__top .eyebrow { margin-bottom: 0; }
+.fitguru-site .eyebrow svg { color: var(--neutral-900); flex-shrink: 0; }
 
-.fitguru-site .body-lg { font-size: 20px; color: var(--neutral-600); max-width: 602px; }
+.fitguru-site .body-lg { font-size: 19px; color: var(--neutral-600); max-width: 602px; line-height: 1.65; }
 
-/* Buttons */
+/* =========================================================
+   BUTTONS — pill-shaped, black/white chrome
+========================================================= */
 .fitguru-site .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 15px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font);
   font-weight: 600;
-  font-size: 14px;
-  border: none;
+  font-size: 15px;
+  letter-spacing: 0;
+  border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease),
+    border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.fitguru-site .btn:hover { transform: translateY(-2px); opacity: 0.92; }
+.fitguru-site .btn:hover { transform: translateY(-1px); }
+
+.fitguru-site .btn--primary { background: var(--white); color: var(--black); }
+.fitguru-site .btn--primary:hover { background: var(--neutral-200); }
+
 .fitguru-site .btn--white { background: var(--white); color: var(--neutral-1000); }
+.fitguru-site .btn--white:hover { background: var(--neutral-200); }
+
 .fitguru-site .btn--dark { background: var(--neutral-1000); color: var(--white); }
-.fitguru-site .btn--sm { padding: 10px 24px; }
-.fitguru-site .btn--block { width: 100%; height: 60px; border-radius: 15px; font-size: 20px; font-weight: 700; }
+.fitguru-site .btn--dark:hover { background: var(--black); }
 
-/* =========================================================
-   1. HERO
-========================================================= */
-.fitguru-site .hero {
-  min-height: 850px;
-  background: var(--black);
-  overflow: hidden;
+.fitguru-site .btn--outline { background: transparent; color: var(--white); border-color: rgba(255, 255, 255, 0.4); }
+.fitguru-site .btn--outline:hover { border-color: var(--white); background: rgba(255, 255, 255, 0.08); }
+
+.fitguru-site .btn--sm { padding: 11px 22px; font-size: 14px; }
+.fitguru-site .btn--block { width: 100%; height: 54px; border-radius: var(--radius-md); font-size: 15px; font-weight: 600; }
+
+/* Plain text link with a directional arrow — reference's secondary CTA style */
+.fitguru-site .link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--white);
+  transition: opacity 0.15s var(--ease);
+}
+.fitguru-site .link-arrow:hover { opacity: 0.7; }
+.fitguru-site .link-arrow svg { transition: transform 0.2s var(--ease); }
+.fitguru-site .link-arrow:hover svg { transform: translate(2px, -2px); }
+
+/* Small decorative corner badge on photo cards (external-link affordance) */
+.fitguru-site .corner-arrow {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(2px);
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 40px 0 80px;
-}
-
-.fitguru-site .hero__bg {
-  position: absolute;
-  inset: 0;
-  background: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn2J8_-VM19zHbyYSBaWzPhSkCu9Ve_luWnN_qrQZ-l74dnUIeLpwp46iyOOaNdZbhfXJ2xonsfu4k9OnnPrvJitgqhxbErvnThq8orBNnuvnAsTvRjOxE6roP7JsidtMuatAKPCQ=w1600-h1000-k-no") center / cover no-repeat;
-  filter: brightness(0.65) contrast(1.05);
-  z-index: 0;
-}
-
-.fitguru-site .hero__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.55) 100%);
-}
-
-.fitguru-site .hero__diagonal {
-  position: absolute;
-  top: -30%;
-  right: -10%;
-  width: 60%;
-  height: 160%;
-  background: #d9d9d9;
-  opacity: 0.06;
-  transform: rotate(35deg);
   z-index: 1;
 }
 
+/* =========================================================
+   FLOATING NAVBAR — fixed black pill, always visible
+========================================================= */
 .fitguru-site .hero__nav {
-  position: relative;
-  z-index: 2;
-  display: flex;
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  right: 24px;
+  z-index: 100;
+  max-width: calc(var(--container) - 48px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 20px;
-  padding-bottom: 60px;
+  gap: 24px;
+  background: var(--black);
+  border-radius: var(--radius-pill);
+  padding: 12px 12px 12px 24px;
+  box-shadow: var(--shadow-md);
 }
 
-.fitguru-site .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; color: var(--white); }
-.fitguru-site .logo--dark { color: var(--black); }
+.fitguru-site .logo { display: inline-flex; align-items: center; }
+.fitguru-site .logo__img {
+  height: 38px;
+  width: auto;
+  /* Source PNG is a dark-slate mark; invert to white so it reads on black chrome */
+  filter: brightness(0) invert(1);
+  transition: opacity 0.15s var(--ease);
+}
+.fitguru-site .logo:hover .logo__img { opacity: 0.7; }
 
-.fitguru-site .hero__links { display: flex; align-items: center; gap: 24px; }
-.fitguru-site .hero__links a { font-size: 16px; font-weight: 500; color: var(--neutral-600); }
-.fitguru-site .hero__links a.active { color: var(--white); font-weight: 600; font-size: 18px; }
+.fitguru-site .hero__links { display: flex; align-items: center; gap: 28px; justify-self: center; }
+.fitguru-site .hero__links a {
+  position: relative;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--neutral-400);
+  padding: 4px 0;
+  transition: color 0.15s var(--ease);
+}
+.fitguru-site .hero__links a:hover { color: var(--white); }
+.fitguru-site .hero__links a.active { color: var(--white); }
 
 .fitguru-site .nav-toggle {
   display: none;
@@ -170,187 +252,249 @@
   cursor: pointer;
   z-index: 3;
 }
-.fitguru-site .nav-toggle span { width: 24px; height: 2px; background: var(--white); }
+.fitguru-site .nav-toggle span { width: 22px; height: 2px; border-radius: 2px; background: var(--white); transition: background 0.15s ease; }
+
+.fitguru-site .hero__join { justify-self: end; }
+
+/* =========================================================
+   1. HERO
+========================================================= */
+.fitguru-site .hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--black);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 160px 0 80px;
+}
+
+.fitguru-site .hero__bg {
+  position: absolute;
+  inset: 0;
+  background: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn2J8_-VM19zHbyYSBaWzPhSkCu9Ve_luWnN_qrQZ-l74dnUIeLpwp46iyOOaNdZbhfXJ2xonsfu4k9OnnPrvJitgqhxbErvnThq8orBNnuvnAsTvRjOxE6roP7JsidtMuatAKPCQ=w1600-h1000-k-no") center / cover no-repeat;
+  filter: brightness(0.65) contrast(1.05);
+  z-index: 0;
+  transform: scale(1.05);
+}
+
+.fitguru-site .hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.45) 100%);
+}
 
 .fitguru-site .hero__content {
   position: relative;
   z-index: 2;
-  max-width: 512px;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-64);
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .fitguru-site .hero__title {
-  font-size: 72px;
-  color: var(--neutral-400);
-  margin-bottom: 24px;
+  font-size: 92px;
+  line-height: 0.92;
+  color: var(--white);
+  letter-spacing: -0.02em;
 }
+.fitguru-site .hero__title .accent { color: var(--white); font-style: italic; font-weight: 700; }
 
 .fitguru-site .hero__subtitle {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 400;
-  color: var(--neutral-500);
-  margin-bottom: var(--space-32);
+  color: var(--neutral-400);
+  line-height: 1.6;
+  max-width: 500px;
 }
 
-.fitguru-site .hero__socials { display: flex; gap: 24px; margin-top: var(--space-32); }
-.fitguru-site .hero__socials a { opacity: 0.85; transition: opacity 0.15s ease; }
-.fitguru-site .hero__socials a:hover { opacity: 1; }
+.fitguru-site .hero__actions { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-top: 8px; }
+
+/* Overlapping initials-avatar stack + rating text — reference's social-proof row */
+.fitguru-site .hero__proof { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+.fitguru-site .hero__proof-avatars { display: flex; }
+.fitguru-site .hero__proof-avatars span {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--black);
+  margin-left: -10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+}
+.fitguru-site .hero__proof-avatars span:first-child { margin-left: 0; }
+.fitguru-site .hero__proof-avatars span:nth-child(1) { background: linear-gradient(135deg, #5a5a57, #232320); }
+.fitguru-site .hero__proof-avatars span:nth-child(2) { background: linear-gradient(135deg, #3a3a38, #121210); }
+.fitguru-site .hero__proof-avatars span:nth-child(3) { background: linear-gradient(135deg, #232320, #000000); }
+.fitguru-site .hero__proof-text { font-size: 14px; color: var(--neutral-300); }
+.fitguru-site .hero__proof-text strong { color: var(--white); }
 
 /* =========================================================
-   2. STATS
+   2. STATS — individual rounded cards on the light canvas
 ========================================================= */
-.fitguru-site .stats { background: var(--black); padding: 48px 0; }
+.fitguru-site .stats { background: var(--canvas); padding: 64px 0 0; }
 .fitguru-site .stats__row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: stretch;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 32px;
-  padding: 0 120px;
+  gap: 20px;
 }
-.fitguru-site .stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.fitguru-site .stat__label { font-size: 14px; font-weight: 500; color: var(--neutral-300); }
-.fitguru-site .stat__label--white { color: var(--white); }
-.fitguru-site .stat__value { font-size: 32px; font-weight: 700; color: var(--neutral-300); }
+.fitguru-site .stat {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  flex: 1 1 220px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 28px 28px;
+  box-shadow: var(--shadow-xs);
+}
+.fitguru-site .stat__label { font-size: 13px; font-weight: 500; color: var(--neutral-600); }
+.fitguru-site .stat__label--white { color: var(--neutral-600); }
+.fitguru-site .stat__value {
+  font-family: var(--font-display);
+  font-size: 38px; font-weight: 800; line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--neutral-1000);
+}
 
 /* =========================================================
    3. WHY CHOOSE US
 ========================================================= */
-.fitguru-site .why { padding: 100px 0; background: var(--white); }
+.fitguru-site .why { padding: 120px 0; background: var(--canvas); }
 .fitguru-site .why__content {
   display: flex;
-  gap: 48px;
+  gap: 56px;
   align-items: center;
-  margin-top: 60px;
 }
 .fitguru-site .why__features {
   display: flex;
   flex-wrap: wrap;
-  gap: 60px 48px;
+  gap: 48px 40px;
   flex: 1 1 500px;
 }
-.fitguru-site .feature { display: flex; gap: 24px; align-items: flex-start; width: 333px; max-width: 100%; }
+.fitguru-site .feature { display: flex; gap: 20px; align-items: flex-start; width: 333px; max-width: 100%; }
 .fitguru-site .feature__icon {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 100px;
-  background: var(--neutral-900);
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--neutral-1000);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s var(--ease);
 }
-.fitguru-site .feature h3 { font-size: 24px; font-weight: 500; color: var(--neutral-900); opacity: 0.9; margin-bottom: 12px; }
-.fitguru-site .feature p { font-size: 18px; font-weight: 400; color: var(--neutral-600); }
+.fitguru-site .feature:hover .feature__icon { transform: translateY(-3px); }
+.fitguru-site .feature h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; color: var(--neutral-1000); margin-bottom: 8px; }
+.fitguru-site .feature p { font-size: 16px; font-weight: 400; color: var(--neutral-600); line-height: 1.6; }
 
-.fitguru-site .why__gallery { display: flex; gap: 25px; flex: 0 0 auto; }
+.fitguru-site .why__gallery { display: flex; gap: 24px; flex: 0 0 auto; }
+.fitguru-site .why__gallery-tall,
+.fitguru-site .why__gallery-stack img { position: relative; }
+.fitguru-site .why__gallery-tall { position: relative; }
+.fitguru-site .why__gallery img { transition: transform 0.4s var(--ease); }
 .fitguru-site .why__gallery-tall img {
   width: 285px;
   height: 410px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
 }
-.fitguru-site .why__gallery-stack { display: flex; flex-direction: column; gap: 25px; }
+.fitguru-site .why__gallery-stack { display: flex; flex-direction: column; gap: 24px; }
+.fitguru-site .why__gallery-stack > div { position: relative; }
 .fitguru-site .why__gallery-stack img {
   width: 265px;
-  height: 192px;
+  height: 193px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
 }
+.fitguru-site .why__gallery img:hover { transform: scale(1.03); }
 
 /* =========================================================
    4. OUR PROGRAM
 ========================================================= */
-.fitguru-site .program { padding: 80px 0; background: var(--white); }
+.fitguru-site .program { padding: 120px 0; background: var(--canvas); }
 .fitguru-site .program__inner { display: flex; gap: 80px; align-items: center; justify-content: center; flex-wrap: wrap; }
 .fitguru-site .program__photos { position: relative; display: flex; align-items: flex-end; flex-shrink: 0; }
 .fitguru-site .program__photo-tall {
-  width: 200px; height: 350px; object-fit: cover; border-radius: 20px; box-shadow: var(--shadow-xl);
+  position: relative; z-index: 2;
+  width: 200px; height: 350px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl);
 }
 .fitguru-site .program__photo-square {
-  width: 350px; height: 350px; object-fit: cover; border-radius: 20px; box-shadow: var(--shadow-xl);
+  width: 350px; height: 350px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl);
   margin-left: -60px; z-index: 1; align-self: center;
 }
-.fitguru-site .program__text { display: flex; flex-direction: column; gap: var(--space-32); max-width: 602px; }
-.fitguru-site .program__text h2 { font-size: 48px; }
+.fitguru-site .program__text { display: flex; flex-direction: column; gap: 24px; max-width: 602px; }
+.fitguru-site .program__text h2 { font-size: 52px; }
 
 /* =========================================================
    5. TRAINERS GALLERY
 ========================================================= */
-.fitguru-site .trainers { padding: 100px 0; background: var(--white); }
-.fitguru-site .trainers__grid { display: flex; flex-direction: column; gap: 24px; opacity: 0.95; }
+.fitguru-site .trainers { padding: 120px 0; background: var(--canvas); }
+.fitguru-site .trainers__grid { display: flex; flex-direction: column; gap: 24px; }
 .fitguru-site .trainers__row { display: flex; gap: 24px; height: 288px; }
-.fitguru-site .trainers__row img { border-radius: 12px; object-fit: cover; height: 100%; }
+.fitguru-site .trainers__row figure { position: relative; margin: 0; overflow: hidden; border-radius: var(--radius-lg); }
+.fitguru-site .trainers__row img {
+  object-fit: cover; height: 100%; width: 100%;
+  transition: transform 0.5s var(--ease);
+}
+.fitguru-site .trainers__row figure:hover img { transform: scale(1.05); }
 .fitguru-site .trainers__row .w-narrow { width: 220px; flex-shrink: 0; }
 .fitguru-site .trainers__row .w-wide { flex: 1 1 0; min-width: 0; }
 
 /* =========================================================
    6. PRICING
 ========================================================= */
-.fitguru-site .pricing { padding: 80px 0; background: var(--white); }
-.fitguru-site .pricing__header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 80px; }
-.fitguru-site .pricing__header h2 { font-size: 48px; }
+.fitguru-site .pricing { padding: 120px 0; background: var(--canvas); }
 
-.fitguru-site .toggle {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  padding: 10px;
-  border: 1px solid var(--neutral-300);
-  border-radius: 16px;
-  box-shadow: var(--shadow-xl);
-}
-.fitguru-site .toggle__btn {
-  border: none;
-  background: transparent;
-  font-family: var(--font);
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--neutral-900);
-  padding: 8px 20px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-.fitguru-site .toggle__btn--active { background: var(--neutral-1000); color: var(--white); }
-
-.fitguru-site .pricing__cards { display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; }
+.fitguru-site .pricing__cards { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; align-items: stretch; }
 
 .fitguru-site .price-card {
-  width: 412px;
+  width: 380px;
   max-width: 100%;
   background: var(--white);
-  border: 1px solid var(--neutral-200);
-  border-radius: 16px;
-  box-shadow: var(--shadow-xl);
-  padding: 28px 20px 20px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  padding: 32px 28px 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 60px;
+  gap: 32px;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
-.fitguru-site .price-card--featured { background: var(--neutral-1000); border-color: var(--black); }
+.fitguru-site .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
-.fitguru-site .price-card__body { display: flex; flex-direction: column; gap: 32px; }
-.fitguru-site .price-card__head { display: flex; flex-direction: column; gap: 8px; }
-.fitguru-site .price-card__name { font-size: 16px; font-weight: 500; color: var(--neutral-700); }
-.fitguru-site .price-card--featured .price-card__name { color: var(--neutral-100); }
+.fitguru-site .price-card__body { display: flex; flex-direction: column; gap: 24px; }
+.fitguru-site .price-card__head { display: flex; flex-direction: column; gap: 10px; }
+.fitguru-site .price-card__name-row { display: flex; align-items: center; gap: 10px; }
+.fitguru-site .price-card__name { font-family: var(--font); font-size: 17px; font-weight: 600; color: var(--neutral-900); }
+.fitguru-site .price-card__badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  background: var(--neutral-1000);
+  color: var(--white);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
 
 .fitguru-site .price-card__price { display: flex; align-items: flex-end; gap: 6px; }
-.fitguru-site .price-card__price .amount { font-size: 40px; font-weight: 700; color: var(--neutral-900); opacity: 0.9; }
-.fitguru-site .price-card--featured .price-card__price .amount { color: var(--white); }
-.fitguru-site .price-card__price .per { font-size: 18px; font-weight: 600; color: var(--neutral-900); opacity: 0.9; padding-bottom: 4px; }
-.fitguru-site .price-card--featured .price-card__price .per { color: var(--white); }
+.fitguru-site .price-card__price .amount { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--neutral-1000); }
+.fitguru-site .price-card__price .per { font-size: 16px; font-weight: 600; color: var(--neutral-600); padding-bottom: 4px; }
 
-.fitguru-site .price-card__desc { font-size: 14px; color: var(--neutral-600); max-width: 344px; }
-.fitguru-site .price-card--featured .price-card__desc { color: var(--neutral-400); }
+.fitguru-site .price-card__desc { font-size: 15px; color: var(--neutral-600); max-width: 344px; line-height: 1.55; }
 
-.fitguru-site .price-card__list { display: flex; flex-direction: column; gap: 12px; max-width: 245px; }
-.fitguru-site .price-card__list li { display: flex; align-items: center; gap: 12px; font-size: 16px; color: var(--neutral-700); }
-.fitguru-site .price-card--featured .price-card__list li { color: var(--neutral-100); }
+.fitguru-site .price-card__divider { border-top: 1px dashed var(--neutral-300); }
+
+.fitguru-site .price-card__list { display: flex; flex-direction: column; gap: 12px; }
+.fitguru-site .price-card__list li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--neutral-900); }
 
 .fitguru-site .tick {
   flex-shrink: 0;
@@ -358,87 +502,71 @@
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 11px;
-  color: var(--white);
+  border: 1px solid var(--neutral-1000);
+  color: var(--neutral-1000);
 }
-.fitguru-site .tick--dark { background: var(--neutral-1000); }
-.fitguru-site .tick--light { background: var(--white); color: var(--neutral-1000); }
 
 /* =========================================================
-   7. REVIEWS
+   7. REVIEWS — static grid, avatar in-card
 ========================================================= */
-.fitguru-site .reviews { padding: 100px 0; background: var(--white); overflow: hidden; }
-.fitguru-site .reviews__header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 80px; }
-.fitguru-site .reviews__header h2 { font-size: 48px; }
+.fitguru-site .reviews { padding: 120px 0; background: var(--canvas); }
 
-.fitguru-site .reviews__content { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-
-.fitguru-site .reviews__avatars { position: relative; width: 435px; height: 335px; flex-shrink: 0; max-width: 100%; }
-.fitguru-site .avatar-badge {
-  position: absolute;
-  border-radius: 50%;
-  box-shadow: var(--shadow-xl);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-family: var(--font);
-  font-weight: 700;
-  letter-spacing: 0;
-}
-.fitguru-site .avatar-badge--0 { top: 18px; left: 0; width: 160px; height: 160px; font-size: 48px; background: linear-gradient(135deg, #424242, #212121); }
-.fitguru-site .avatar-badge--1 { top: 183px; left: 285px; width: 150px; height: 150px; font-size: 44px; background: linear-gradient(135deg, #757575, #424242); }
-.fitguru-site .avatar-badge--2 { top: 173px; left: 91px; width: 180px; height: 180px; font-size: 52px; background: linear-gradient(135deg, #212121, #0a142f); }
-
-.fitguru-site .reviews__carousel-wrap { flex: 1 1 500px; min-width: 0; }
-.fitguru-site .reviews__track { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 4px; scrollbar-width: none; }
-.fitguru-site .reviews__track::-webkit-scrollbar { display: none; }
+.fitguru-site .reviews__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
 .fitguru-site .review-card {
-  scroll-snap-align: start;
-  flex: 0 0 340px;
   background: var(--white);
-  border: 1px solid var(--neutral-300);
-  border-radius: 24px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xs);
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.fitguru-site .review-card__name { font-size: 24px; font-weight: 600; color: var(--neutral-900); opacity: 0.9; margin-bottom: 12px; }
-.fitguru-site .review-card__stars { color: #212121; font-size: 16px; letter-spacing: 2px; margin-bottom: 12px; }
-.fitguru-site .review-card__stars .dim { color: var(--neutral-300); }
-.fitguru-site .review-card__quote { font-size: 14px; color: var(--neutral-700); opacity: 0.8; }
-.fitguru-site .review-card__time { font-size: 12px; color: var(--neutral-500); margin-top: -8px; }
-
-.fitguru-site .reviews__nav { display: flex; gap: 10px; margin-top: 16px; padding-left: 4px; }
-.fitguru-site .reviews__nav button {
-  width: 45px; height: 45px; border-radius: 50%;
-  background: var(--neutral-1000);
-  color: var(--white);
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
+.fitguru-site .review-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.fitguru-site .review-card__avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s ease;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--white);
+  background: linear-gradient(135deg, #3a3a38, #121210);
 }
-.fitguru-site .reviews__nav button:hover { background: var(--neutral-900); }
+.fitguru-site .review-card__stars { color: var(--neutral-1000); font-size: 15px; letter-spacing: 2px; }
+.fitguru-site .review-card__quote { font-size: 15px; color: var(--neutral-700); line-height: 1.6; }
+.fitguru-site .review-card__name { font-family: var(--font); font-size: 16px; font-weight: 700; color: var(--neutral-1000); }
+.fitguru-site .review-card__time { font-size: 13px; color: var(--neutral-500); }
+.fitguru-site .review-card__foot { margin-top: auto; display: flex; flex-direction: column; gap: 2px; }
 
 /* =========================================================
-   8. FOOTER
+   8. FOOTER — solid black, matches reference's closing surface
 ========================================================= */
-.fitguru-site .footer { background: var(--white); }
+.fitguru-site .footer { background: var(--black); color: var(--white); }
 
-.fitguru-site .footer__cta { position: relative; height: 425px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.fitguru-site .footer__cta { position: relative; height: 425px; overflow: hidden; display: flex; align-items: center; }
 .fitguru-site .footer__cta-bg {
   position: absolute; inset: 0;
   background: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmnHnjhS_UZy6SBu_ob7w6fILDD8OTEgC7kcdsvEW_rpTRrzUd4JT5K1QIvLGZ6LVV5D5vrf7JTlWDKTFwxrANy-FsVR7RBvzUeJ1mRVVtsj1sr-qNLBfqx3nqpcsjnMknsKxz-=w1600-h850-k-no") center / cover no-repeat;
-  filter: brightness(0.5);
+  filter: brightness(0.6);
 }
-.fitguru-site .footer__cta-bg::after { content: ""; position: absolute; inset: 0; background: rgba(17,17,17,0.55); }
-.fitguru-site .footer__cta-content { position: relative; z-index: 1; text-align: center; color: var(--white); display: flex; flex-direction: column; gap: 30px; }
-.fitguru-site .footer__cta-content p:first-child { font-size: 24px; font-weight: 500; }
-.fitguru-site .footer__phone { font-size: 32px; font-weight: 700; }
+.fitguru-site .footer__cta-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,10,0.85), rgba(10,10,10,0.3)); }
+.fitguru-site .footer__cta-content { position: relative; z-index: 1; color: var(--white); display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.fitguru-site .footer__cta-content .eyebrow { color: var(--neutral-300); margin-bottom: 0; }
+.fitguru-site .footer__cta-content .eyebrow svg { color: var(--neutral-300); }
+.fitguru-site .footer__cta-title { font-family: var(--font-display); font-size: 44px; font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; }
+.fitguru-site .footer__phone {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 800; letter-spacing: -0.01em; color: var(--white);
+  background: var(--white);
+  color: var(--black);
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  transition: opacity 0.15s var(--ease);
+}
+.fitguru-site .footer__phone:hover { opacity: 0.8; }
 
 .fitguru-site .footer__cols {
   display: flex;
@@ -446,71 +574,139 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding-top: 80px;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 }
 
 .fitguru-site .footer__brand { display: flex; flex-direction: column; gap: 24px; max-width: 333px; }
-.fitguru-site .footer__tagline { font-size: 18px; color: var(--neutral-1000); opacity: 0.8; }
-.fitguru-site .footer__email { font-size: 16px; color: var(--neutral-1000); opacity: 0.8; }
-.fitguru-site .footer__socials { display: flex; gap: 27px; opacity: 0.8; }
+.fitguru-site .footer__tagline { font-size: 16px; color: var(--neutral-400); line-height: 1.6; }
+.fitguru-site .footer__email { font-size: 16px; color: var(--neutral-400); }
+.fitguru-site .footer__socials { display: flex; gap: 16px; }
+.fitguru-site .footer__socials a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.fitguru-site .footer__socials a:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
 
-.fitguru-site .footer__links { display: flex; flex-direction: column; gap: 24px; min-width: 101px; }
-.fitguru-site .footer__col-title { font-size: 18px; font-weight: 500; color: var(--black); }
-.fitguru-site .footer__links a { font-size: 16px; color: var(--black); opacity: 0.6; }
-.fitguru-site .footer__links a:hover { opacity: 1; }
+.fitguru-site .footer__links { display: flex; flex-direction: column; gap: 18px; min-width: 101px; }
+.fitguru-site .footer__col-title { font-family: var(--font); font-size: 13px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--neutral-500); }
+.fitguru-site .footer__links a { font-size: 16px; color: var(--neutral-300); transition: color 0.15s var(--ease); }
+.fitguru-site .footer__links a:hover { color: var(--white); }
+
+.fitguru-site .footer__wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: clamp(64px, 12vw, 168px);
+  line-height: 0.85;
+  color: var(--neutral-900);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.15);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .fitguru-site .footer__bottom {
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--neutral-600);
   padding: 24px 0;
-  border-top: 1px solid var(--neutral-300);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================================================
+   SCROLL REVEAL (progressive enhancement)
+   Elements start hidden only once JS has flagged the root.
+========================================================= */
+.fitguru-site.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  will-change: opacity, transform;
+}
+.fitguru-site.reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 @media (max-width: 1200px) {
-  .fitguru-site .stats__row { padding: 0 40px; justify-content: center; }
   .fitguru-site .why__content { flex-direction: column; }
   .fitguru-site .why__gallery { align-self: center; }
 }
 
 @media (max-width: 900px) {
   .fitguru-site .nav-toggle { display: flex; }
+  .fitguru-site .hero__nav { grid-template-columns: auto auto; left: 16px; right: 16px; padding: 10px 10px 10px 20px; }
+  .fitguru-site .hero__join { display: none; }
   .fitguru-site .hero__links {
-    position: absolute; top: 100%; left: 0; right: 0;
+    position: absolute; top: calc(100% + 12px); left: 0; right: 0;
     background: var(--black);
+    border-radius: var(--radius-md);
     flex-direction: column;
-    padding: 24px;
+    align-items: flex-start;
+    padding: 20px 24px;
     display: none;
-    gap: 16px;
+    gap: 18px;
+    z-index: 5;
+    justify-self: auto;
   }
   .fitguru-site .hero__links.open { display: flex; }
-  .fitguru-site .hero__title { font-size: 48px; }
+  .fitguru-site .hero { padding-top: 130px; }
+  .fitguru-site .hero__title { font-size: 60px; }
+  .fitguru-site .section-heading { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .fitguru-site .section-heading__desc { text-align: left; max-width: none; }
   .fitguru-site .section-heading h2,
-  .fitguru-site .pricing__header h2,
-  .fitguru-site .reviews__header h2,
-  .fitguru-site .program__text h2 { font-size: 34px; }
+  .fitguru-site .program__text h2 { font-size: 38px; }
   .fitguru-site .program__inner { flex-direction: column; }
   .fitguru-site .program__photos { justify-content: center; margin: 0 auto; }
   .fitguru-site .trainers__row { flex-direction: column; height: auto; }
   .fitguru-site .trainers__row .w-narrow,
   .fitguru-site .trainers__row .w-wide { width: 100%; height: 240px; }
-  .fitguru-site .reviews__avatars { display: none; }
+  .fitguru-site .trainers__row figure { height: 240px; }
+  .fitguru-site .reviews__grid { grid-template-columns: 1fr; }
   .fitguru-site .footer__cols { padding-top: 48px; }
+  .fitguru-site .footer__cta { padding: 0 16px; }
+}
+
+@media (max-width: 700px) {
+  .fitguru-site .reviews__grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
   .fitguru-site .container { padding: 0 16px; }
   .fitguru-site .hero { padding-bottom: 60px; }
-  .fitguru-site .hero__title { font-size: 36px; }
-  .fitguru-site .stats__row { flex-direction: column; gap: 24px; }
-  .fitguru-site .why { padding: 60px 0; }
-  .fitguru-site .program { padding: 60px 0; }
+  .fitguru-site .hero__title { font-size: 46px; }
+  .fitguru-site .section-heading h2 { font-size: 32px; }
+  .fitguru-site .stats__row { flex-direction: column; }
+  .fitguru-site .why { padding: 72px 0; }
+  .fitguru-site .program { padding: 72px 0; }
+  .fitguru-site .trainers { padding: 72px 0; }
+  .fitguru-site .pricing { padding: 72px 0; }
+  .fitguru-site .reviews { padding: 72px 0; }
   .fitguru-site .program__photo-square { margin-left: -30px; width: 220px; height: 220px; }
   .fitguru-site .program__photo-tall { width: 130px; height: 220px; }
   .fitguru-site .price-card { width: 100%; }
-  .fitguru-site .pricing__cards { gap: 24px; }
-  .fitguru-site .review-card { flex-basis: 280px; }
+  .fitguru-site .pricing__cards { gap: 20px; }
+  .fitguru-site .footer__cta-title { font-size: 28px; }
+  .fitguru-site .footer__phone { font-size: 22px; padding: 12px 22px; }
+}
+
+/* =========================================================
+   REDUCED MOTION — honor user preference (a11y)
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .fitguru-site *,
+  .fitguru-site *::before,
+  .fitguru-site *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .fitguru-site.reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }

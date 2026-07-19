@@ -1,3 +1,5 @@
+import SectionEyebrow from "./SectionEyebrow";
+
 // Google Business Profiles don't expose membership pricing, so real dollar
 // figures aren't available here. Rather than invent prices, each plan links
 // to a real contact method (call/Maps) so visitors get an accurate quote.
@@ -37,22 +39,26 @@ export default function Pricing() {
   return (
     <section id="pricing" className="section pricing">
       <div className="container pricing__inner">
-        <div className="pricing__header">
-          <div>
-            <p className="eyebrow">Membership</p>
-            <h2 className="uppercase">Join Today</h2>
+        <div className="section-heading">
+          <div className="section-heading__top">
+            <SectionEyebrow>Membership</SectionEyebrow>
+            <h2>Simple pricing</h2>
           </div>
-          <a href="tel:+8562093460645" className="btn btn--dark">
-            Call 020 93 460 645
-          </a>
+          <p className="section-heading__desc">
+            Choose the plan that fits your training goals. No hidden fees — call anytime for an
+            accurate quote.
+          </p>
         </div>
 
         <div className="pricing__cards">
           {PLANS.map((plan, i) => (
-            <article className={`price-card ${plan.featured ? "price-card--featured" : ""}`} key={i}>
+            <article className="price-card" key={i}>
               <div className="price-card__body">
                 <div className="price-card__head">
-                  <p className="price-card__name">{plan.name}</p>
+                  <div className="price-card__name-row">
+                    <p className="price-card__name">{plan.name}</p>
+                    {plan.featured && <span className="price-card__badge">Popular</span>}
+                  </div>
                   <div className="price-card__price">
                     <span className="amount" style={{ fontSize: 24 }}>
                       Contact&nbsp;for&nbsp;pricing
@@ -60,20 +66,17 @@ export default function Pricing() {
                   </div>
                 </div>
                 <p className="price-card__desc">{plan.desc}</p>
+                <div className="price-card__divider" />
                 <ul className="price-card__list">
                   {plan.features.map((f, j) => (
                     <li key={j}>
-                      <span className={`tick ${plan.featured ? "tick--light" : "tick--dark"}`}>&#10003;</span>
+                      <span className="tick">&#10003;</span>
                       {f}
                     </li>
                   ))}
                 </ul>
               </div>
-              <a
-                href="tel:+8562093460645"
-                className={`btn btn--block ${plan.featured ? "btn--white" : "btn--dark"}`}
-                style={{ textDecoration: "none" }}
-              >
+              <a href="tel:+8562093460645" className="btn btn--dark btn--block">
                 Call to Join
               </a>
             </article>

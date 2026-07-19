@@ -1,4 +1,6 @@
 import { sengdaraPhoto } from "./sengdara-photos";
+import SectionEyebrow from "./SectionEyebrow";
+import CornerArrow from "./CornerArrow";
 
 // Copy grounded in real Google reviews for Sengdara Fitness Km6 (Namnueng Kvs,
 // Mee Lutsamy, Pandacoco) — no lorem ipsum.
@@ -49,8 +51,14 @@ export default function WhyChooseUs() {
     <section id="why-choose-us" className="section why">
       <div className="container why__inner">
         <div className="section-heading">
-          <h2>Why Choose Us</h2>
-          <p>Rated 4.7 out of 5 from 62 members — here&apos;s what keeps them coming back to Sengdara Fitness Km6</p>
+          <div className="section-heading__top">
+            <SectionEyebrow>Why Choose Us</SectionEyebrow>
+            <h2>Built for real results</h2>
+          </div>
+          <p className="section-heading__desc">
+            Rated 4.7 out of 5 from 62 members — here&apos;s what keeps them coming back to
+            Sengdara Fitness Km6.
+          </p>
         </div>
 
         <div className="why__content">
@@ -73,18 +81,25 @@ export default function WhyChooseUs() {
                 alt="Sengdara Fitness two-level equipment floor"
                 loading="lazy"
               />
+              <CornerArrow />
             </div>
             <div className="why__gallery-stack">
-              <img
-                src={sengdaraPhoto("boxingArea", 530, 384)}
-                alt="Sengdara Fitness boxing and functional training area"
-                loading="lazy"
-              />
-              <img
-                src={sengdaraPhoto("memberCableMachine", 530, 384)}
-                alt="Sengdara Fitness member training on a cable machine"
-                loading="lazy"
-              />
+              <div>
+                <img
+                  src={sengdaraPhoto("boxingArea", 530, 384)}
+                  alt="Sengdara Fitness boxing and functional training area"
+                  loading="lazy"
+                />
+                <CornerArrow />
+              </div>
+              <div>
+                <img
+                  src={sengdaraPhoto("memberCableMachine", 530, 384)}
+                  alt="Sengdara Fitness member training on a cable machine"
+                  loading="lazy"
+                />
+                <CornerArrow />
+              </div>
             </div>
           </div>
         </div>

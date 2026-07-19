@@ -1,6 +1,4 @@
-"use client";
-
-import { useRef } from "react";
+import SectionEyebrow from "./SectionEyebrow";
 
 // Real reviews from the Sengdara Fitness Km6 Google Business Profile (4.7★, 62 reviews).
 // Thai-language reviews are translated to English below; original text preserved in `original`.
@@ -33,23 +31,13 @@ const REVIEWS = [
 ];
 
 export default function Reviews() {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const scrollByCard = (direction: 1 | -1) => {
-    const track = trackRef.current;
-    const card = track?.querySelector<HTMLElement>(".review-card");
-    if (!track || !card) return;
-    const distance = card.getBoundingClientRect().width + 24;
-    track.scrollBy({ left: direction * distance, behavior: "smooth" });
-  };
-
   return (
     <section id="reviews" className="section reviews">
       <div className="container reviews__inner">
-        <div className="reviews__header">
-          <div>
-            <p className="eyebrow">Reviews</p>
-            <h2 className="uppercase">4.7★ from 62 Members</h2>
+        <div className="section-heading">
+          <div className="section-heading__top">
+            <SectionEyebrow>Reviews</SectionEyebrow>
+            <h2>4.7★ from 62 members</h2>
           </div>
           <a
             href="https://maps.app.goo.gl/TPBH4abruK9srHEK6"
@@ -57,39 +45,24 @@ export default function Reviews() {
             rel="noopener noreferrer"
             className="btn btn--dark"
           >
-            +&nbsp;&nbsp;Leave a Review
+            Leave a Review
           </a>
         </div>
 
-        <div className="reviews__content">
-          <div className="reviews__avatars" aria-hidden="true">
-            {REVIEWS.map((r, i) => (
-              <div className={`avatar-badge avatar-badge--${i}`} key={r.name}>
+        <div className="reviews__grid">
+          {REVIEWS.map((r) => (
+            <article className="review-card" key={r.name}>
+              <div className="review-card__avatar" aria-hidden="true">
                 {r.initials}
               </div>
-            ))}
-          </div>
-
-          <div className="reviews__carousel-wrap">
-            <div className="reviews__track" ref={trackRef}>
-              {REVIEWS.map((r, i) => (
-                <article className="review-card" key={i}>
-                  <p className="review-card__name">{r.name}</p>
-                  <div className="review-card__stars">★★★★★</div>
-                  <p className="review-card__quote">{r.quote}</p>
-                  <p className="review-card__time">{r.timeAgo} · Google review</p>
-                </article>
-              ))}
-            </div>
-            <div className="reviews__nav">
-              <button type="button" aria-label="Previous review" onClick={() => scrollByCard(-1)}>
-                &#8592;
-              </button>
-              <button type="button" aria-label="Next review" onClick={() => scrollByCard(1)}>
-                &#8594;
-              </button>
-            </div>
-          </div>
+              <div className="review-card__stars">★★★★★</div>
+              <p className="review-card__quote">{r.quote}</p>
+              <div className="review-card__foot">
+                <p className="review-card__name">{r.name}</p>
+                <p className="review-card__time">{r.timeAgo} · Google review</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

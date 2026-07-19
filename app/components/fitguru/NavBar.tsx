@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const LINKS = [
   { href: "#hero", label: "Home" },
@@ -37,10 +38,14 @@ export default function NavBar() {
   return (
     <div className="container hero__nav">
       <a className="logo" href="#hero">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 24V12M11 27V9M16 30V6M20 6V30M25 9V27M30 12V24" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-        </svg>
-        <span>Sengdara Fitness</span>
+        <Image
+          src="/images/logo.png"
+          alt="Sengdara Fitness"
+          width={2398}
+          height={1792}
+          className="logo__img"
+          priority
+        />
       </a>
 
       <button

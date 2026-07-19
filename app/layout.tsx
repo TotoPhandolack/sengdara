@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Rubik } from "next/font/google";
+import { Geist, Geist_Mono, Archivo, Inter } from "next/font/google";
 import "./globals.css";
 import "./fitguru.css";
 
@@ -13,10 +13,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const rubik = Rubik({
-  variable: "--font-rubik",
+// Body copy — clean editorial grotesk
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Display headings — heavy geometric grotesk, editorial/premium rather than collegiate
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+  weight: ["600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${archivo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

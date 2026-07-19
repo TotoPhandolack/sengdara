@@ -1,4 +1,5 @@
 import { sengdaraPhoto } from "./sengdara-photos";
+import SectionEyebrow from "./SectionEyebrow";
 
 export default function Program() {
   return (
@@ -20,7 +21,7 @@ export default function Program() {
         </div>
         <div className="program__text">
           <div>
-            <p className="eyebrow">Are you looking for a Mentor?</p>
+            <SectionEyebrow>Are you looking for a mentor?</SectionEyebrow>
             <h2>Coaches</h2>
           </div>
           <p className="body-lg">

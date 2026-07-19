@@ -6,10 +6,12 @@ import TrainersGallery from "./components/fitguru/TrainersGallery";
 import Pricing from "./components/fitguru/Pricing";
 import Reviews from "./components/fitguru/Reviews";
 import Footer from "./components/fitguru/Footer";
+import ScrollReveal from "./components/fitguru/ScrollReveal";
 
 export default function Home() {
   return (
     <div className="fitguru-site">
+      <ScrollReveal />
       <Hero />
       <Stats />
       <WhyChooseUs />
