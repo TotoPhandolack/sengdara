@@ -1,0 +1,78 @@
+const FEATURES = [
+  {
+    title: "Lorem Ipsum amid",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6">
+        <path d="M3 12h2m14 0h2M7 8v8m10-8v8M7 12h10" />
+      </svg>
+    ),
+  },
+  {
+    title: "Lorem Ipsum amid",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6">
+        <circle cx="12" cy="8" r="5" />
+        <path d="M8.5 12.5L7 21l5-2.5L17 21l-1.5-8.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "Lorem Ipsum amid",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6">
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="12" r="3" />
+        <path d="M9 12h6" />
+      </svg>
+    ),
+  },
+  {
+    title: "Lorem Ipsum amid",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6">
+        <rect x="2" y="10" width="20" height="4" rx="2" />
+      </svg>
+    ),
+  },
+];
+
+export default function WhyChooseUs() {
+  return (
+    <section id="why-choose-us" className="section why">
+      <div className="container why__inner">
+        <div className="section-heading">
+          <h2>Why Choose Us</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+        </div>
+
+        <div className="why__content">
+          <div className="why__features">
+            {FEATURES.map((f, i) => (
+              <div className="feature" key={i}>
+                <span className="feature__icon">{f.icon}</span>
+                <div>
+                  <h3>{f.title}</h3>
+                  <p>{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="why__gallery">
+            <div className="why__gallery-tall">
+              <img src="https://picsum.photos/seed/fitguru-gym1/500/820" alt="Gym interior" loading="lazy" />
+            </div>
+            <div className="why__gallery-stack">
+              <img src="https://picsum.photos/seed/fitguru-gym2/460/380" alt="Gym equipment" loading="lazy" />
+              <img src="https://picsum.photos/seed/fitguru-gym3/460/380" alt="Weights close up" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
