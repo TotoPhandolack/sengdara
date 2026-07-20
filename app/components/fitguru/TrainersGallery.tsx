@@ -1,23 +1,25 @@
+"use client";
+
 import { sengdaraPhoto } from "./sengdara-photos";
 import SectionEyebrow from "./SectionEyebrow";
 import CornerArrow from "./CornerArrow";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
 // No dedicated trainer-portrait photos were available on the Google Business
 // Profile, so this section reuses the confirmed real facility shots instead
 // of stock placeholders. Swap in real trainer photos here once you have them.
 export default function TrainersGallery() {
+  const { t } = useLanguage();
+
   return (
     <section id="trainers-gallery" className="section trainers">
       <div className="container trainers__inner">
         <div className="section-heading">
           <div className="section-heading__top">
-            <SectionEyebrow>Facility</SectionEyebrow>
-            <h2>Take a look inside</h2>
+            <SectionEyebrow>{t.facility.eyebrow}</SectionEyebrow>
+            <h2>{t.facility.heading}</h2>
           </div>
-          <p className="section-heading__desc">
-            Two floors of premium Precor equipment, a boxing area, an elevated running track, and
-            more.
-          </p>
+          <p className="section-heading__desc">{t.facility.desc}</p>
         </div>
 
         <div className="trainers__grid">

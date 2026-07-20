@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Archivo, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Outfit, Phetsarath } from "next/font/google";
 import "./globals.css";
 import "./fitguru.css";
+import { LanguageProvider } from "./i18n/LanguageProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,19 +14,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Body copy — clean editorial grotesk
-const inter = Inter({
-  variable: "--font-inter",
+// Latin display + body — geometric grotesk, variable weight 100–900.
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-// Display headings — heavy geometric grotesk, editorial/premium rather than collegiate
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
+// Lao script — Phetsarath renders ພາສາລາວ. Stacked *after* Outfit so Latin
+// glyphs use Outfit and only Lao characters fall through to Phetsarath.
+const phetsarath = Phetsarath({
+  variable: "--font-phetsarath",
+  subsets: ["lao"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -46,12 +47,12 @@ export default function RootLayout({
     // so they don't trigger dev-mode hydration warnings. Only affects these two
     // tags one level deep — real mismatches in the app tree still surface.
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${archivo.variable} h-full antialiased`}
+      lang="lo"
+      className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${phetsarath.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

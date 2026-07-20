@@ -40,8 +40,10 @@
   --space-32: 32px;
   --space-64: 64px;
 
-  --font: var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-display: var(--font-archivo), "Archivo", var(--font), sans-serif;
+  /* Outfit carries Latin; Phetsarath is the fallback that supplies Lao glyphs,
+     so the same stack renders both languages correctly, glyph by glyph. */
+  --font: var(--font-outfit), var(--font-phetsarath), system-ui, sans-serif;
+  --font-display: var(--font-outfit), var(--font-phetsarath), var(--font), sans-serif;
   --container: 1430px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -53,6 +55,11 @@
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Lao (Phetsarath) stacks vowels/tone marks above and below the baseline, so a
+   little extra line height keeps them from crowding. Scoped to Lao only, driven
+   by the <html lang> the language provider keeps in sync. */
+html[lang="lo"] .fitguru-site { line-height: 1.65; }
 
 .fitguru-site *,
 .fitguru-site *::before,
@@ -267,7 +274,43 @@
 .fitguru-site .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .fitguru-site .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.fitguru-site .hero__join { justify-self: end; }
+/* Right-hand nav cluster: language switch + Join (desktop) or + hamburger (mobile) */
+.fitguru-site .hero__nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: end;
+}
+.fitguru-site .hero__join { flex-shrink: 0; }
+
+/* Language switcher — segmented pill that sits on the black nav chrome */
+.fitguru-site .lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+.fitguru-site .lang-toggle__opt {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--neutral-400);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 6px 11px;
+  border-radius: var(--radius-pill);
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.fitguru-site .lang-toggle__opt:hover { color: var(--white); }
+.fitguru-site .lang-toggle__opt.active {
+  background: var(--white);
+  color: var(--black);
+}
 
 /* Join CTA shown inside the mobile dropdown (hidden on desktop) */
 .fitguru-site .hero__menu-cta { display: none; }

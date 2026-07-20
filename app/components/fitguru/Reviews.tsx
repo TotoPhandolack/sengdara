@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import SectionEyebrow from "./SectionEyebrow";
-import { sengdaraReviews } from "./sengdara-reviews";
+import { sengdaraReviews, formatTimeAgo } from "./sengdara-reviews";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
 export default function Reviews() {
+  const { t, lang } = useLanguage();
   const trackRef = useRef<HTMLDivElement>(null);
   const [pageCount, setPageCount] = useState(1);
   const [page, setPage] = useState(0);
@@ -42,8 +44,8 @@ export default function Reviews() {
       <div className="container reviews__inner">
         <div className="section-heading">
           <div className="section-heading__top">
-            <SectionEyebrow>Reviews</SectionEyebrow>
-            <h2>What members say</h2>
+            <SectionEyebrow>{t.reviews.eyebrow}</SectionEyebrow>
+            <h2>{t.reviews.heading}</h2>
           </div>
           <a
             href="https://maps.app.goo.gl/TPBH4abruK9srHEK6"
@@ -51,7 +53,7 @@ export default function Reviews() {
             rel="noopener noreferrer"
             className="btn btn--dark"
           >
-            Leave a Review
+            {t.reviews.leaveReview}
           </a>
         </div>
 
@@ -61,26 +63,28 @@ export default function Reviews() {
               <div className="review-card__avatar" aria-hidden="true">
                 {r.initials}
               </div>
-              <div className="review-card__stars" aria-label="Rated 5 out of 5">
+              <div className="review-card__stars" aria-label={t.reviews.starsAria}>
                 ★★★★★
               </div>
-              <p className="review-card__quote">{r.quote}</p>
+              <p className="review-card__quote">{r.quote[lang]}</p>
               <div className="review-card__foot">
                 <p className="review-card__name">{r.name}</p>
-                <p className="review-card__time">{r.timeAgo} · Google review</p>
+                <p className="review-card__time">
+                  {formatTimeAgo(r.timeAgo, lang)} · {t.reviews.googleReview}
+                </p>
               </div>
             </article>
           ))}
         </div>
 
         <div className="reviews__controls">
-          <div className="reviews__dots" role="tablist" aria-label="Review pages">
+          <div className="reviews__dots" role="tablist" aria-label={t.reviews.pageAria}>
             {Array.from({ length: pageCount }).map((_, i) => (
               <button
                 key={i}
                 type="button"
                 className={`reviews__dot ${i === page ? "active" : ""}`}
-                aria-label={`Go to review page ${i + 1}`}
+                aria-label={`${t.reviews.goToPage} ${i + 1}`}
                 aria-current={i === page}
                 onClick={() => goTo(i)}
               />
@@ -89,7 +93,7 @@ export default function Reviews() {
           <div className="reviews__arrows">
             <button
               type="button"
-              aria-label="Previous reviews"
+              aria-label={t.reviews.prevAria}
               disabled={page <= 0}
               onClick={() => goTo(page - 1)}
             >
@@ -99,7 +103,7 @@ export default function Reviews() {
             </button>
             <button
               type="button"
-              aria-label="Next reviews"
+              aria-label={t.reviews.nextAria}
               disabled={page >= pageCount - 1}
               onClick={() => goTo(page + 1)}
             >

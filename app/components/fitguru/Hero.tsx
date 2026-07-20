@@ -1,45 +1,33 @@
-import fs from "node:fs";
-import path from "node:path";
+"use client";
+
 import NavBar from "./NavBar";
 import HeroBackground from "./HeroBackground";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
-const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".avif"]);
-
-function getHeroImages() {
-  const dir = path.join(process.cwd(), "public", "images", "hero");
-  return fs
-    .readdirSync(dir)
-    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
-    .sort()
-    .map((file) => `/images/hero/${file}`);
-}
-
-export default function Hero() {
-  const heroImages = getHeroImages();
+export default function Hero({ images }: { images: string[] }) {
+  const { t } = useLanguage();
 
   return (
     <section id="hero" className="section hero">
-      <HeroBackground images={heroImages} />
+      <HeroBackground images={images} />
       <div className="hero__bg" aria-hidden="true" />
 
       <NavBar />
 
       <div className="container hero__content">
+        {/* Brand wordmark — kept in Latin in both languages, like the logo. */}
         <h1 className="hero__title">
           SengDara
           <br />
           <span className="accent">Fitness</span>
         </h1>
-        <p className="hero__subtitle">
-          Premium Precor equipment, a full swimming pool and sauna, and trainers who actually spot
-          you — Vientiane&apos;s highest-rated gym at Km6.
-        </p>
+        <p className="hero__subtitle">{t.hero.subtitle}</p>
         <div className="hero__actions">
           <a href="#pricing" className="btn btn--primary">
-            Get Started
+            {t.hero.getStarted}
           </a>
           <a href="#trainers-gallery" className="link-arrow">
-            Take a tour
+            {t.hero.takeTour}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path
                 d="M3 11L11 3M11 3H4M11 3V10"
@@ -58,7 +46,7 @@ export default function Hero() {
             <span>PC</span>
           </div>
           <p className="hero__proof-text">
-            <strong>4.7★</strong> from 62 Google reviews
+            <strong>4.7★</strong> {t.hero.proofText}
           </p>
         </div>
       </div>

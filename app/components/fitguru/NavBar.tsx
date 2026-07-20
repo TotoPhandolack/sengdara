@@ -2,17 +2,20 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-const LINKS = [
-  { href: "#hero", label: "Home" },
-  { href: "#why-choose-us", label: "About" },
-  { href: "#trainers-gallery", label: "Services" },
-  { href: "#footer", label: "Contact" },
-];
+import { useLanguage } from "../../i18n/LanguageProvider";
+import LanguageToggle from "../../i18n/LanguageToggle";
 
 export default function NavBar() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#hero");
+
+  const links = [
+    { href: "#hero", label: t.nav.home },
+    { href: "#why-choose-us", label: t.nav.about },
+    { href: "#trainers-gallery", label: t.nav.services },
+    { href: "#footer", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const sections = Array.from(
@@ -48,19 +51,8 @@ export default function NavBar() {
         />
       </a>
 
-      <button
-        className="nav-toggle"
-        aria-label="Toggle navigation"
-        aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
       <nav className={`hero__links ${open ? "open" : ""}`}>
-        {LINKS.map((link) => (
+        {links.map((link) => (
           <a
             key={link.href}
             href={link.href}
@@ -72,9 +64,24 @@ export default function NavBar() {
         ))}
       </nav>
 
-      <a href="#pricing" className="btn btn--white btn--sm hero__join">
-        Join Now
-      </a>
+      <div className="hero__nav-right">
+        <LanguageToggle />
+
+        <a href="#pricing" className="btn btn--white btn--sm hero__join">
+          {t.nav.join}
+        </a>
+
+        <button
+          className="nav-toggle"
+          aria-label="Toggle navigation"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   );
 }

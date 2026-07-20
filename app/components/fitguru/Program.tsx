@@ -1,7 +1,12 @@
+"use client";
+
 import { sengdaraPhoto } from "./sengdara-photos";
 import SectionEyebrow from "./SectionEyebrow";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
 export default function Program() {
+  const { t } = useLanguage();
+
   return (
     <section id="program" className="section program">
       <div className="container program__inner">
@@ -21,17 +26,12 @@ export default function Program() {
         </div>
         <div className="program__text">
           <div>
-            <SectionEyebrow>Are you looking for a mentor?</SectionEyebrow>
-            <h2>Coaches</h2>
+            <SectionEyebrow>{t.program.eyebrow}</SectionEyebrow>
+            <h2>{t.program.heading}</h2>
           </div>
-          <p className="body-lg">
-            &ldquo;The trainers are incredibly kind — always around to spot you and teach you how to use
-            the equipment properly,&rdquo; says one member. Whether you&apos;re brand new to the gym or
-            training for a specific goal, our team walks the floor with you instead of leaving you to
-            figure it out alone.
-          </p>
+          <p className="body-lg">{t.program.body}</p>
           <a href="#trainers-gallery" className="btn btn--dark">
-            Explore&nbsp;&nbsp;More
+            {t.program.cta}
           </a>
         </div>
       </div>

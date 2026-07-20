@@ -1,32 +1,32 @@
+"use client";
+
 import Image from "next/image";
 import SectionEyebrow from "./SectionEyebrow";
+import { useLanguage } from "../../i18n/LanguageProvider";
 
-const LINK_COLUMNS = [
-  { title: "Quick Links", links: [
-    { label: "Home", href: "#hero" },
-    { label: "Why Choose Us", href: "#why-choose-us" },
-    { label: "Facility", href: "#trainers-gallery" },
-    { label: "Pricing", href: "#pricing" },
-  ]},
-  { title: "Contact", links: [
-    { label: "020 93 460 645", href: "tel:+8562093460645" },
-    { label: "Ban Nongnieng 13, South Rd", href: "https://maps.app.goo.gl/TPBH4abruK9srHEK6" },
-    { label: "Vientiane 01160, Laos", href: "https://maps.app.goo.gl/TPBH4abruK9srHEK6" },
-  ]},
-  { title: "Hours", links: [
-    { label: "Open daily", href: "#footer" },
-    { label: "Until 10:00 PM", href: "#footer" },
-  ]},
-];
+// Hrefs live in code; the labels come from the dictionary and are paired by
+// index (same order in both languages).
+const QUICK_HREFS = ["#hero", "#why-choose-us", "#trainers-gallery", "#pricing"];
+const MAPS_URL = "https://maps.app.goo.gl/TPBH4abruK9srHEK6";
+const CONTACT_HREFS = ["tel:+8562093460645", MAPS_URL, MAPS_URL];
+const HOURS_HREFS = ["#footer", "#footer"];
 
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const columns = [
+    { title: t.footer.colQuick, labels: t.footer.quick, hrefs: QUICK_HREFS },
+    { title: t.footer.colContact, labels: t.footer.contact, hrefs: CONTACT_HREFS },
+    { title: t.footer.colHours, labels: t.footer.hours, hrefs: HOURS_HREFS },
+  ];
+
   return (
     <footer id="footer" className="section footer">
       <div className="footer__cta">
         <div className="footer__cta-bg" aria-hidden="true" />
         <div className="container footer__cta-content">
-          <SectionEyebrow>Ready when you are</SectionEyebrow>
-          <p className="footer__cta-title">Start training at Sengdara</p>
+          <SectionEyebrow>{t.footer.ctaEyebrow}</SectionEyebrow>
+          <p className="footer__cta-title">{t.footer.ctaTitle}</p>
           <a className="footer__phone" href="tel:+8562093460645">
             020 93 460 645
           </a>
@@ -44,10 +44,7 @@ export default function Footer() {
               className="logo__img"
             />
           </a>
-          <p className="footer__tagline">
-            Vientiane&apos;s 4.7-star rated gym — premium Precor equipment, a full swimming pool,
-            sauna, and trainers who spot you.
-          </p>
+          <p className="footer__tagline">{t.footer.tagline}</p>
           <div className="footer__socials">
             <a href="#" aria-label="Facebook">
               <svg width="9" height="18" viewBox="0 0 9 19" fill="none">
@@ -72,12 +69,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {LINK_COLUMNS.map((col, i) => (
+        {columns.map((col, i) => (
           <div className="footer__links" key={i}>
             <p className="footer__col-title">{col.title}</p>
-            {col.links.map((link, j) => (
-              <a href={link.href} key={j}>
-                {link.label}
+            {col.labels.map((label, j) => (
+              <a href={col.hrefs[j]} key={j}>
+                {label}
               </a>
             ))}
           </div>
@@ -88,7 +85,7 @@ export default function Footer() {
         <p className="footer__wordmark" aria-hidden="true">SENGDARA</p>
       </div>
 
-      <p className="footer__bottom">&copy; 2026 Sengdara Fitness Km6. All rights reserved.</p>
+      <p className="footer__bottom">{t.footer.copyright}</p>
     </footer>
   );
 }
